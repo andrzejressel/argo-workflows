@@ -4041,12 +4041,7 @@ definitions:
             outputs:
                 $ref: '#/definitions/Outputs'
             parallelism:
-                description: |-
-                    Parallelism limits the max total parallel pods that can execute at the same time within the
-                    boundaries of this template invocation. If additional steps/dag templates are invoked, the
-                    pods created by those templates will not be counted towards this total.
-                format: int64
-                type: integer
+                $ref: '#/definitions/IntOrString'
             plugin:
                 $ref: '#/definitions/Plugin'
             podSpecPatch:

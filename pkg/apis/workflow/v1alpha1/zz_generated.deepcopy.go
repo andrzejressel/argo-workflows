@@ -3259,7 +3259,7 @@ func (in *Template) DeepCopyInto(out *Template) {
 	}
 	if in.Parallelism != nil {
 		in, out := &in.Parallelism, &out.Parallelism
-		*out = new(int64)
+		*out = new(intstr.IntOrString)
 		**out = **in
 	}
 	if in.FailFast != nil {
@@ -3761,7 +3761,7 @@ func (in *WorkflowSpec) DeepCopyInto(out *WorkflowSpec) {
 	}
 	if in.Parallelism != nil {
 		in, out := &in.Parallelism, &out.Parallelism
-		*out = new(int64)
+		*out = new(intstr.IntOrString)
 		**out = **in
 	}
 	if in.ArtifactRepositoryRef != nil {

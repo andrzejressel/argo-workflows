@@ -293,7 +293,7 @@ type WorkflowSpec struct {
 	VolumeClaimTemplates []apiv1.PersistentVolumeClaim `json:"volumeClaimTemplates,omitempty" protobuf:"bytes,6,opt,name=volumeClaimTemplates"`
 
 	// Parallelism limits the max total parallel pods that can execute at the same time in a workflow
-	Parallelism *int64 `json:"parallelism,omitempty" protobuf:"bytes,7,opt,name=parallelism"`
+	Parallelism *intstr.IntOrString `json:"parallelism,omitempty" protobuf:"bytes,7,opt,name=parallelism"`
 
 	// ArtifactRepositoryRef specifies the configMap name and key containing the artifact repository config.
 	ArtifactRepositoryRef *ArtifactRepositoryRef `json:"artifactRepositoryRef,omitempty" protobuf:"bytes,8,opt,name=artifactRepositoryRef"`
@@ -690,7 +690,7 @@ type Template struct {
 	// Parallelism limits the max total parallel pods that can execute at the same time within the
 	// boundaries of this template invocation. If additional steps/dag templates are invoked, the
 	// pods created by those templates will not be counted towards this total.
-	Parallelism *int64 `json:"parallelism,omitempty" protobuf:"bytes,23,opt,name=parallelism"`
+	Parallelism *intstr.IntOrString `json:"parallelism,omitempty" protobuf:"bytes,23,opt,name=parallelism"`
 
 	// FailFast, if specified, will fail this template if any of its child pods has failed. This is useful for when this
 	// template is expanded with `withItems`, etc.
@@ -802,10 +802,6 @@ func (tmpl *Template) GetSidecarNames() []string {
 
 func (tmpl *Template) IsFailFast() bool {
 	return tmpl.FailFast != nil && *tmpl.FailFast
-}
-
-func (tmpl *Template) HasParallelism() bool {
-	return tmpl.Parallelism != nil && *tmpl.Parallelism > 0
 }
 
 func (tmpl *Template) GetOutputs() *Outputs {

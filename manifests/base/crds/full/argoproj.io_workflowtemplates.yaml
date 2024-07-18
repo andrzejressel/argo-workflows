@@ -1735,8 +1735,10 @@ spec:
               onExit:
                 type: string
               parallelism:
-                format: int64
-                type: integer
+                anyOf:
+                - type: integer
+                - type: string
+                x-kubernetes-int-or-string: true
               podDisruptionBudget:
                 properties:
                   maxUnavailable:
@@ -7802,8 +7804,10 @@ spec:
                         type: string
                     type: object
                   parallelism:
-                    format: int64
-                    type: integer
+                    anyOf:
+                    - type: integer
+                    - type: string
+                    x-kubernetes-int-or-string: true
                   plugin:
                     type: object
                   podSpecPatch:
@@ -16288,8 +16292,10 @@ spec:
                           type: string
                       type: object
                     parallelism:
-                      format: int64
-                      type: integer
+                      anyOf:
+                      - type: integer
+                      - type: string
+                      x-kubernetes-int-or-string: true
                     plugin:
                       type: object
                     podSpecPatch:
