@@ -2756,7 +2756,7 @@ func (woc *wfOperationCtx) checkParallelism(tmpl *wfv1.Template, node *wfv1.Node
 		return err
 	}
 
-	if parallelism != nil && *parallelism > 0 && woc.activePods >= *parallelism {
+	if parallelism != nil && woc.activePods >= *parallelism {
 		woc.log.Infof("workflow active pod spec parallelism reached %d/%d", woc.activePods, *parallelism)
 		return ErrParallelismReached
 	}

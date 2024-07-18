@@ -820,14 +820,18 @@ kind: Workflow
 metadata:
   generateName: param-parallelism-
 spec:
-  entrypoint: whalesay
+  entrypoint: hello
   arguments:
     parameters:
       - name: parallelism
         value: "5"
   templates:
+  - name: hello
+    parallelism: "{{workflow.parameters.parallelism}}"
+    steps:
+    - - name: hello
+        template: whalesay
   - name: whalesay
-    parallelism: "{{inputs.parameters.parallelism}}"
     container:
       image: argoproj/argosay:v2
       args: [sleep, 1s]
